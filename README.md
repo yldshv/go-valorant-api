@@ -5,7 +5,7 @@
 
 
 
-# GO-VALORANT-API
+# GO-VALORANT-API (WIP!)
 
 GO-VALORANT-API is a go-based wrapper for the following Valorant Rest API:
 
@@ -45,8 +45,8 @@ func main() {
   vapi := govapi.New() //You can pass in your API-Key as String (if you dont have a key just leave it empty)
 
   acc, err := vapi.GetAccountByName(govapi.GetAccountByNameParams{
-		Name: "xxx",
-		Tag: "xxx",
+    Name: "xxx",
+    Tag: "xxx",
   })
   if err != nil {
     // handle the error
