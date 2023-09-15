@@ -148,3 +148,41 @@ func (v *VAPI) GetMMRByPUUIDv2(p GetMMRByPUUIDv2Params) (*GetMMRByPUUIDv2Respons
 
 	return mmr, nil
 }
+
+func (v *VAPI) GetMMRHistoryByPUUID(p GetMMRHistoryByPUUIDParams) (*GetMMRHistoryByPUUIDResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/%v/%v", p.Affinity, p.Puuid)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var mmrHistory *GetMMRHistoryByPUUIDResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&mmrHistory); err != nil {
+		return nil, err
+	}
+
+	return mmrHistory, nil
+}
+
+func (v *VAPI) GetContent(p GetContentParams) (*GetContentResponse, error) {
+	query := MakeQueryStr(QueryParams{
+		"locale": p.Locale,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/content%v", query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var content *GetContentResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&content); err != nil {
+		return nil, err
+	}
+
+	return content, nil
+}
+

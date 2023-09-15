@@ -817,3 +817,422 @@ type GetMMRByPUUIDv2Response struct {
 	} `json:"data"`
 	Errors []Error `json:"errors"`
 }
+
+type GetMMRHistoryByPUUIDParams struct {
+	Affinity string
+	Puuid string
+}
+
+type GetMMRHistoryByPUUIDResponse struct {
+	Status int    `json:"status"`
+	Name   string `json:"name"`
+	Tag    string `json:"tag"`
+	Data   []struct {
+		Currenttier        int    `json:"currenttier"`
+		CurrenttierPatched string `json:"currenttier_patched"`
+		Images             struct {
+			Small        string `json:"small"`
+			Large        string `json:"large"`
+			TriangleDown string `json:"triangle_down"`
+			TriangleUp   string `json:"triangle_up"`
+		} `json:"images"`
+		MatchID string `json:"match_id"`
+		Map     struct {
+			Name string `json:"name"`
+			ID   string `json:"id"`
+		} `json:"map"`
+		SeasonID            string `json:"season_id"`
+		RankingInTier       int    `json:"ranking_in_tier"`
+		MmrChangeToLastGame int    `json:"mmr_change_to_last_game"`
+		Elo                 int    `json:"elo"`
+		Date                string `json:"date"`
+		DateRaw             int    `json:"date_raw"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetContentParams struct {
+	Locale string
+}
+
+type GetContentResponse struct {
+	Version    string `json:"version"`
+	Characters []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"characters"`
+	Maps []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"maps"`
+	Chromas []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"chromas"`
+	Skins []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"skins"`
+	SkinLevels []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"skinLevels"`
+	Equips []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"equips"`
+	GameModes []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"gameModes"`
+	Sprays []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"sprays"`
+	SprayLevels []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"sprayLevels"`
+	Charms []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"charms"`
+	CharmLevels []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"charmLevels"`
+	PlayerCards []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"playerCards"`
+	PlayerTitles []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID        string `json:"id"`
+		AssetName string `json:"assetName"`
+		AssetPath string `json:"assetPath"`
+	} `json:"playerTitles"`
+	Acts []struct {
+		Name           string `json:"name"`
+		LocalizedNames []struct {
+			ArAE string `json:"ar-AE"`
+			DeDE string `json:"de-DE"`
+			EnGB string `json:"en-GB"`
+			EnUS string `json:"en-US"`
+			EsES string `json:"es-ES"`
+			EsMX string `json:"es-MX"`
+			FrFR string `json:"fr-FR"`
+			IDID string `json:"id-ID"`
+			ItIT string `json:"it-IT"`
+			JaJP string `json:"ja-JP"`
+			KoKR string `json:"ko-KR"`
+			PlPL string `json:"pl-PL"`
+			PtBR string `json:"pt-BR"`
+			RuRU string `json:"ru-RU"`
+			ThTH string `json:"th-TH"`
+			TrTR string `json:"tr-TR"`
+			ViVN string `json:"vi-VN"`
+			ZnCN string `json:"zn-CN"`
+			ZnTW string `json:"zn-TW"`
+		} `json:"localizedNames"`
+		ID       string `json:"id"`
+		IsActive bool   `json:"isActive"`
+	} `json:"acts"`
+	Errors []Error `json:"errors"`
+}
