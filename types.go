@@ -3,8 +3,8 @@ package govapi
 import "time"
 
 type GetAccountByNameParams struct {
-	Name string
-	Tag  string
+	Name  string
+	Tag   string
 	Force string
 }
 
@@ -147,10 +147,10 @@ type GetLifetimeMMRHistoryByPUUIDResponse struct {
 
 type GetMatchesByPUUIDv3Params struct {
 	Affinity string
-	Puuid string
-	Mode string
-	Map string
-	Size string
+	Puuid    string
+	Mode     string
+	Map      string
+	Size     string
 }
 
 type GetMatchesByPUUIDv3Response struct {
@@ -558,8 +558,8 @@ type GetMatchesByPUUIDv3Response struct {
 
 type GetMMRByPUUIDv2Params struct {
 	Affinity string
-	Puuid string
-	Season string
+	Puuid    string
+	Season   string
 }
 
 type GetMMRByPUUIDv2Response struct {
@@ -589,7 +589,7 @@ type GetMMRByPUUIDv2Response struct {
 		} `json:"highest_rank"`
 		BySeason struct {
 			E6A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -601,7 +601,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e6a3"`
 			E6A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -613,7 +613,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e6a2"`
 			E6A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -625,7 +625,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e6a1"`
 			E5A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -637,7 +637,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e5a3"`
 			E5A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -649,7 +649,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e5a2"`
 			E5A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -661,7 +661,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e5a1"`
 			E4A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -673,7 +673,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e4a3"`
 			E4A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -685,7 +685,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e4a2"`
 			E4A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -697,7 +697,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e4a1"`
 			E3A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -709,7 +709,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e3a3"`
 			E3A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -721,7 +721,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e3a2"`
 			E3A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -733,7 +733,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e3a1"`
 			E2A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -745,7 +745,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e2a3"`
 			E2A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -757,7 +757,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e2a2"`
 			E2A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -769,7 +769,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e2a1"`
 			E1A3 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -781,7 +781,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e1a3"`
 			E1A2 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -793,7 +793,7 @@ type GetMMRByPUUIDv2Response struct {
 				Old bool `json:"old"`
 			} `json:"e1a2"`
 			E1A1 struct {
-				Error            string   `json:"error"`
+				Error            string `json:"error"`
 				Wins             int    `json:"wins"`
 				NumberOfGames    int    `json:"number_of_games"`
 				FinalRank        int    `json:"final_rank"`
@@ -820,7 +820,7 @@ type GetMMRByPUUIDv2Response struct {
 
 type GetMMRHistoryByPUUIDParams struct {
 	Affinity string
-	Puuid string
+	Puuid    string
 }
 
 type GetMMRHistoryByPUUIDResponse struct {
@@ -1234,5 +1234,189 @@ type GetContentResponse struct {
 		ID       string `json:"id"`
 		IsActive bool   `json:"isActive"`
 	} `json:"acts"`
+	Errors []Error `json:"errors"`
+}
+
+type GetEsportsScheduleParams struct {
+	Affinity string
+	League   string
+}
+
+type GetEsportsScheduleResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		Date   time.Time `json:"date"`
+		State  string    `json:"state"`
+		Type   string    `json:"type"`
+		Vod    string    `json:"vod"`
+		League struct {
+			Name       string `json:"name"`
+			Identifier string `json:"identifier"`
+			Icon       string `json:"icon"`
+			Region     string `json:"region"`
+		} `json:"league"`
+		Tournament struct {
+			Name   string `json:"name"`
+			Season string `json:"season"`
+		} `json:"tournament"`
+		Match struct {
+			ID       string `json:"id"`
+			GameType struct {
+				Type  string `json:"type"`
+				Count int    `json:"count"`
+			} `json:"game_type"`
+			Teams []struct {
+				Name     string `json:"name"`
+				Code     string `json:"code"`
+				Icon     string `json:"icon"`
+				HasWon   bool   `json:"has_won"`
+				GameWins int    `json:"game_wins"`
+				Record   struct {
+					Wins   int `json:"wins"`
+					Losses int `json:"losses"`
+				} `json:"record"`
+			} `json:"teams"`
+		} `json:"match"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetLeaderboardV2Params struct {
+	Affinity string
+	Puuid    string
+	Name     string
+	Tag      string
+	Season   string
+}
+
+type GetLeaderboardV2Response struct {
+	LastUpdate         int `json:"last_update"`
+	NextUpdate         int `json:"next_update"`
+	TotalPlayers       int `json:"total_players"`
+	RadiantThreshold   int `json:"radiant_threshold"`
+	Immortal3Threshold int `json:"immortal_3_threshold"`
+	Immortal2Threshold int `json:"immortal_2_threshold"`
+	Immortal1Threshold int `json:"immortal_1_threshold"`
+	Players            []struct {
+		PlayerCardID    string `json:"PlayerCardID"`
+		TitleID         string `json:"TitleID"`
+		IsBanned        bool   `json:"IsBanned"`
+		IsAnonymized    bool   `json:"IsAnonymized"`
+		Puuid           string `json:"puuid"`
+		GameName        string `json:"gameName"`
+		TagLine         string `json:"tagLine"`
+		LeaderboardRank int    `json:"leaderboardRank"`
+		RankedRating    int    `json:"rankedRating"`
+		NumberOfWins    int    `json:"numberOfWins"`
+		CompetitiveTier int    `json:"competitiveTier"`
+	} `json:"players"`
+	Errors []Error `json:"errors"`
+}
+
+type GetLifetimeMatchesByNameParams struct {
+	Affinity string
+	Name     string
+	Tag      string
+	Mode     string
+	Map      string
+	Page     string
+	Size     string
+}
+
+type GetLifetimeMatchesByNameResponse struct {
+	Status  int    `json:"status"`
+	Name    string `json:"name"`
+	Tag     string `json:"tag"`
+	Results struct {
+		Total    int `json:"total"`
+		Returned int `json:"returned"`
+		Before   int `json:"before"`
+		After    int `json:"after"`
+	} `json:"results"`
+	Data []struct {
+		Meta struct {
+			ID  string `json:"id"`
+			Map struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"map"`
+			Version   string `json:"version"`
+			Mode      string `json:"mode"`
+			StartedAt string `json:"started_at"`
+			Season    struct {
+				ID    string `json:"id"`
+				Short string `json:"short"`
+			} `json:"season"`
+			Region  string `json:"region"`
+			Cluster string `json:"cluster"`
+		} `json:"meta"`
+		Stats struct {
+			Puuid     string `json:"puuid"`
+			Team      string `json:"team"`
+			Level     int    `json:"level"`
+			Character struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"character"`
+			Tier    int `json:"tier"`
+			Score   int `json:"score"`
+			Kills   int `json:"kills"`
+			Deaths  int `json:"deaths"`
+			Assists int `json:"assists"`
+			Shots   struct {
+				Head int `json:"head"`
+				Body int `json:"body"`
+				Leg  int `json:"leg"`
+			} `json:"shots"`
+			Damage struct {
+				Made     int `json:"made"`
+				Received int `json:"received"`
+			} `json:"damage"`
+		} `json:"stats"`
+		Teams struct {
+			Red  int `json:"red"`
+			Blue int `json:"blue"`
+		} `json:"teams"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetLifetimeMMRHistoryByNameParams struct {
+	Affinity string
+	Name     string
+	Tag      string
+	Page     string
+	Size     string
+}
+
+type GetLifetimeMMRHistoryByNameResponse struct {
+	Status  int    `json:"status"`
+	Name    string `json:"name"`
+	Tag     string `json:"tag"`
+	Results struct {
+		Total    int `json:"total"`
+		Returned int `json:"returned"`
+		Before   int `json:"before"`
+		After    int `json:"after"`
+	} `json:"results"`
+	Data []struct {
+		MatchID string `json:"match_id"`
+		Tier    struct {
+			ID   int    `json:"id"`
+			Name string `json:"name"`
+		} `json:"tier"`
+		Map struct {
+			ID   string `json:"id"`
+			Name string `json:"name"`
+		} `json:"map"`
+		Season struct {
+			ID    string `json:"id"`
+			Short string `json:"short"`
+		} `json:"season"`
+		RankingInTier int       `json:"ranking_in_tier"`
+		LastMmrChange int       `json:"last_mmr_change"`
+		Elo           int       `json:"elo"`
+		Date          time.Time `json:"date"`
+	} `json:"data"`
 	Errors []Error `json:"errors"`
 }

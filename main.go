@@ -66,7 +66,7 @@ func (v *VAPI) GetAccountByPUUID(p GetAccountByPUUIDParams) (*GetAccountResponse
 func (v *VAPI) GetLifetimeMatchesByPUUID(p GetLifetimeMatchesByPUUIDParams) (*GetLifetimeMatchesByPUUIDResponse, error) {
 	query := MakeQueryStr(QueryParams{
 		"mode": p.Mode,
-		"map": p.Map,
+		"map":  p.Map,
 		"page": p.Page,
 		"size": p.Size,
 	})
@@ -110,7 +110,7 @@ func (v *VAPI) GetLifetimeMMRHistoryByPUUID(p GetLifetimeMMRHistoryByPUUIDParams
 func (v *VAPI) GetMatchesByPUUIDv3(p GetMatchesByPUUIDv3Params) (*GetMatchesByPUUIDv3Response, error) {
 	query := MakeQueryStr(QueryParams{
 		"mode": p.Mode,
-		"map": p.Map,
+		"map":  p.Map,
 		"size": p.Size,
 	})
 	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v3/by-puuid/matches/%v/%v%v", p.Affinity, p.Puuid, query)
@@ -186,3 +186,91 @@ func (v *VAPI) GetContent(p GetContentParams) (*GetContentResponse, error) {
 	return content, nil
 }
 
+func (v *VAPI) GetEsportsSchedule(p GetEsportsScheduleParams) (*GetEsportsScheduleResponse, error) {
+	query := MakeQueryStr(QueryParams{
+		"region": p.Affinity,
+		"league": p.League,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/esports/schedule%v", query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var schedule *GetEsportsScheduleResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&schedule); err != nil {
+		return nil, err
+	}
+
+	return schedule, nil
+}
+
+func (v *VAPI) GetLeaderboardV2(p GetLeaderboardV2Params) (*GetLeaderboardV2Response, error) {
+	query := MakeQueryStr(QueryParams{
+		"affinity": p.Affinity,
+		"puuid":    p.Puuid,
+		"name":     p.Name,
+		"tag":      p.Tag,
+		"season":   p.Season,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v2/leaderboard%v", query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var lb *GetLeaderboardV2Response
+
+	if err := json.NewDecoder(resp.Body).Decode(&lb); err != nil {
+		return nil, err
+	}
+
+	return lb, nil
+}
+
+func (v *VAPI) GetLifetimeMatchesByName(p GetLifetimeMatchesByNameParams) (*GetLifetimeMatchesByNameResponse, error) {
+	query := MakeQueryStr(QueryParams{
+		"mode": p.Mode,
+		"map":  p.Map,
+		"page": p.Page,
+		"size": p.Size,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/lifetime/matches/%v/%v/%v%v", p.Affinity, p.Name, p.Tag, query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var matches *GetLifetimeMatchesByNameResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, err
+	}
+
+	return matches, nil
+}
+
+func (v *VAPI) GetLifetimeMMRHistoryByName(p GetLifetimeMMRHistoryByNameParams) (*GetLifetimeMMRHistoryByNameResponse, error) {
+	query := MakeQueryStr(QueryParams{
+		"page": p.Page,
+		"size": p.Size,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/lifetime/mmr-history/%v/%v/%v%v", p.Affinity, p.Name, p.Tag, query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var history *GetLifetimeMMRHistoryByNameResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&history); err != nil {
+		return nil, err
+	}
+
+	return history, nil
+}
