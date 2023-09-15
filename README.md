@@ -9,7 +9,7 @@
 
 GO-VALORANT-API is a go-based wrapper for the following Valorant Rest API:
 
-https://github.com/Henrik-3/unofficial-valorant-api
+https://github.com/Henrik-3/unofficial-valorant-api v3.0.0
 
 This API is free and freely accessible for everyone. An API key is optional but not mandatory.
 
@@ -38,7 +38,7 @@ Get Account Information
 package main
 
 import (
-	govapi "github.com/yldshv/go-valorant-api"
+  govapi "github.com/yldshv/go-valorant-api"
 )
 
 func main() {
@@ -74,3 +74,6 @@ fmt.Printf("%+v", mmrHistory)
 ## Documentation
 
 The detailed documentations are still in progress.
+
+Methodnaming is heavily inspired by the endpoint naming here:<br>
+[API Swagger](https://app.swaggerhub.com/apis-docs/Henrik-3/HenrikDev-API/3.0.0)
