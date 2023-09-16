@@ -1,8 +1,10 @@
 package govapi
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 type VAPI struct {
@@ -346,3 +348,239 @@ func (v *VAPI) GetMMRByNameV2(p GetMMRByNameV2Params) (*GetMMRByNameV2Response, 
 	return mmr, nil
 }
 
+func (v *VAPI) GetPremierTeam(p GetPremierTeamParams) (*GetPremierTeamResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/%v/%v", p.TeamName, p.TeamTag)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var team *GetPremierTeamResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&team); err != nil {
+		return nil, err
+	}
+
+	return team, nil
+}
+
+func (v *VAPI) GetPremierTeamHistory(p GetPremierTeamParams) (*GetPremierTeamHistoryResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/%v/%v/history", p.TeamName, p.TeamTag)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var teamHistory *GetPremierTeamHistoryResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&teamHistory); err != nil {
+		return nil, err
+	}
+
+	return teamHistory, nil
+}
+
+func (v *VAPI) GetPremierTeams(p GetPremierTeamsParams) (*GetPremierTeamsResponse, error) {
+	query := MakeQueryStr(QueryParams{
+		"name":       p.TeamName,
+		"tag":        p.TeamTag,
+		"division":   p.Division,
+		"conference": p.Conference,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/search%v", query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var teams *GetPremierTeamsResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, err
+	}
+
+	return teams, nil
+}
+
+func (v *VAPI) GetPremierConferences() (*GetPremierConferencesResponse, error) {
+	url := "https://api.henrikdev.xyz/valorant/v1/premier/conferences"
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var conferences *GetPremierConferencesResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&conferences); err != nil {
+		return nil, err
+	}
+
+	return conferences, nil
+}
+
+func (v *VAPI) GetPremierSeasons(p GetPremierSeasonsParams) (*GetPremierSeasonsResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/seasons/%v", p.Affinity)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var seasons *GetPremierSeasonsResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&seasons); err != nil {
+		return nil, err
+	}
+
+	return seasons, nil
+}
+
+func (v *VAPI) GetPremierLeaderboard(p GetPremierLeaderboardParams) (*GetPremierLeaderboardResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/leaderboard/%v", p.Affinity)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var lb *GetPremierLeaderboardResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&lb); err != nil {
+		return nil, err
+	}
+
+	return lb, nil
+}
+
+func (v *VAPI) GetPremierConfLeaderboard(p GetPremierConfLeaderboardParams) (*GetPremierLeaderboardResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/leaderboard/%v/%v", p.Affinity, p.Conference)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var lb *GetPremierLeaderboardResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&lb); err != nil {
+		return nil, err
+	}
+
+	return lb, nil
+}
+
+func (v *VAPI) GetPremierConfDivLeaderboard(p GetPremierConfDivLeaderboardParams) (*GetPremierLeaderboardResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/premier/leaderboard/%v/%v/%v", p.Affinity, p.Conference, p.Division)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var lb *GetPremierLeaderboardResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&lb); err != nil {
+		return nil, err
+	}
+
+	return lb, nil
+}
+
+func (v *VAPI) GetQueueStatus(p GetStatusParams) (*GetQueueStatusResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/queue-status/%v", p.Affinity)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var status *GetQueueStatusResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&status); err != nil {
+		return nil, err
+	}
+
+	return status, nil
+}
+
+func (v *VAPI) GetStatus(p GetStatusParams) (*GetStatusResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/status/%v", p.Affinity)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var status *GetStatusResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&status); err != nil {
+		return nil, err
+	}
+
+	return status, nil
+}
+
+func (v *VAPI) GetVersion(p GetStatusParams) (*GetVersionResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/version/%v", p.Affinity)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var version *GetVersionResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&version); err != nil {
+		return nil, err
+	}
+
+	return version, nil
+}
+
+func (v *VAPI) GetRawMatchHistory(p GetRawMatchHistoryParams) (*GetRawMatchHistoryResponse, error) {
+	p.Type = "matchhistory"
+	body, _ := json.Marshal(p)
+	req, _ := http.NewRequest("POST", "https://api.henrikdev.xyz/valorant/v1/raw", bytes.NewReader(body))
+	req.Header.Add("Authorization", v.Token)
+	req.Header.Add("Content-Type", "application/json")
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var matchHistory *GetRawMatchHistoryResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&matchHistory); err != nil {
+		return nil, err
+	}
+
+	return matchHistory, nil
+}
+
+func (v *VAPI) GetRawMatchDetails(p GetRawMatchDetailsParams) (*GetRawMatchDetailsResponse, error) {
+	p.Type = "matchdetails"
+	body, _ := json.Marshal(p)
+	req, _ := http.NewRequest("POST", "https://api.henrikdev.xyz/valorant/v1/raw", bytes.NewReader(body))
+	req.Header.Add("Authorization", v.Token)
+	req.Header.Add("Content-Type", "application/json")
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var matchDetails *GetRawMatchDetailsResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&matchDetails); err != nil {
+		return nil, err
+	}
+
+	return matchDetails, nil
+}

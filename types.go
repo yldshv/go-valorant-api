@@ -1427,7 +1427,6 @@ type GetMatchesByNameV3Params struct {
 	Tag      string
 }
 
-
 type GetMatchesByNameV3Response struct {
 	Status int `json:"status"`
 	Data   []struct {
@@ -2240,8 +2239,8 @@ type GetMatchResponse struct {
 
 type GetMMRHistoryByNameParams struct {
 	Affinity string
-	Name string
-	Tag string
+	Name     string
+	Tag      string
 }
 
 type GetMMRHistoryByNameResponse struct {
@@ -2274,9 +2273,9 @@ type GetMMRHistoryByNameResponse struct {
 
 type GetMMRByNameV2Params struct {
 	Affinity string
-	Name string
-	Tag string
-	Season string
+	Name     string
+	Tag      string
+	Season   string
 }
 
 type GetMMRByNameV2Response struct {
@@ -2532,5 +2531,582 @@ type GetMMRByNameV2Response struct {
 		} `json:"act_rank_wins"`
 		Old bool `json:"old"`
 	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierTeamParams struct {
+	TeamName string
+	TeamTag  string
+}
+
+type GetPremierTeamResponse struct {
+	Status int `json:"status"`
+	Data   struct {
+		ID       string `json:"id"`
+		Name     string `json:"name"`
+		Tag      string `json:"tag"`
+		Enrolled bool   `json:"enrolled"`
+		Stats    struct {
+			Wins    int `json:"wins"`
+			Matches int `json:"matches"`
+			Losses  int `json:"losses"`
+		} `json:"stats"`
+		Placement struct {
+			Points     int    `json:"points"`
+			Conference string `json:"conference"`
+			Division   int    `json:"division"`
+			Place      int    `json:"place"`
+		} `json:"placement"`
+		Customization struct {
+			Icon      string `json:"icon"`
+			Image     string `json:"image"`
+			Primary   string `json:"primary"`
+			Secondary string `json:"secondary"`
+			Tertiary  string `json:"tertiary"`
+		} `json:"customization"`
+		Member []struct {
+			Puuid string `json:"puuid"`
+			Name  string `json:"name"`
+			Tag   string `json:"tag"`
+		} `json:"member"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierTeamHistoryResponse struct {
+	Status int `json:"status"`
+	Data   struct {
+		LeagueMatches []struct {
+			ID           string    `json:"id"`
+			PointsBefore int       `json:"points_before"`
+			PointsAfter  int       `json:"points_after"`
+			StartedAt    time.Time `json:"started_at"`
+		} `json:"league_matches"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierTeamsParams struct {
+	TeamName   string
+	TeamTag    string
+	Division   string
+	Conference string
+}
+
+type GetPremierTeamsResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		ID            string `json:"id"`
+		Name          string `json:"name"`
+		Tag           string `json:"tag"`
+		Conference    string `json:"conference"`
+		Division      int    `json:"division"`
+		Affinity      string `json:"affinity"`
+		Region        string `json:"region"`
+		Losses        int    `json:"losses"`
+		Wins          int    `json:"wins"`
+		Score         int    `json:"score"`
+		Ranking       int    `json:"ranking"`
+		Customization struct {
+			Icon      string `json:"icon"`
+			Image     string `json:"image"`
+			Primary   string `json:"primary"`
+			Secondary string `json:"secondary"`
+			Tertiary  string `json:"tertiary"`
+		} `json:"customization"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierConferencesResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		ID       string `json:"id"`
+		Affinity string `json:"affinity"`
+		Pods     []struct {
+			Pod  string `json:"pod"`
+			Name string `json:"name"`
+		} `json:"pods"`
+		Region   string `json:"region"`
+		Timezone string `json:"timezone"`
+		Name     string `json:"name"`
+		Icon     string `json:"icon"`
+	} `json:"data"`
+	Erros []Error `json:"errors"`
+}
+
+type GetPremierSeasonsParams struct {
+	Affinity string
+}
+
+type GetPremierSeasonsResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		ID                         string    `json:"id"`
+		ChampionshipEventID        string    `json:"championship_event_id"`
+		ChampionshipPointsRequired int       `json:"championship_points_required"`
+		StartsAt                   time.Time `json:"starts_at"`
+		EndsAt                     time.Time `json:"ends_at"`
+		EnrollmentStartsAt         time.Time `json:"enrollment_starts_at"`
+		EnrollmentEndsAt           time.Time `json:"enrollment_ends_at"`
+		Events                     []struct {
+			ID                  string    `json:"id"`
+			Type                string    `json:"type"`
+			StartsAt            time.Time `json:"starts_at"`
+			EndsAt              time.Time `json:"ends_at"`
+			ConferenceSchedules []struct {
+				Conference string    `json:"conference"`
+				StartsAt   time.Time `json:"starts_at"`
+				EndsAt     time.Time `json:"ends_at"`
+			} `json:"conference_schedules"`
+			MapSelection struct {
+				Type string `json:"type"`
+				Maps []struct {
+					Name string `json:"name"`
+					ID   string `json:"id"`
+				} `json:"maps"`
+			} `json:"map_selection"`
+			PointsRequiredToParticipate int `json:"points_required_to_participate"`
+		} `json:"events"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierLeaderboardParams struct {
+	Affinity string
+}
+
+type GetPremierLeaderboardResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		ID            string `json:"id"`
+		Name          string `json:"name"`
+		Tag           string `json:"tag"`
+		Conference    string `json:"conference"`
+		Division      int    `json:"division"`
+		Affinity      string `json:"affinity"`
+		Region        string `json:"region"`
+		Losses        int    `json:"losses"`
+		Wins          int    `json:"wins"`
+		Score         int    `json:"score"`
+		Ranking       int    `json:"ranking"`
+		Customization struct {
+			Icon      string `json:"icon"`
+			Image     string `json:"image"`
+			Primary   string `json:"primary"`
+			Secondary string `json:"secondary"`
+			Tertiary  string `json:"tertiary"`
+		} `json:"customization"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetPremierConfLeaderboardParams struct {
+	Affinity   string
+	Conference string
+}
+
+type GetPremierConfDivLeaderboardParams struct {
+	Affinity   string
+	Conference string
+	Division   string
+}
+
+type GetStatusParams struct {
+	Affinity string
+}
+
+type GetQueueStatusResponse struct {
+	Status int `json:"status"`
+	Data   []struct {
+		Mode          string `json:"mode"`
+		ModeID        string `json:"mode_id"`
+		Enabled       bool   `json:"enabled"`
+		TeamSize      int    `json:"team_size"`
+		NumberOfTeams int    `json:"number_of_teams"`
+		PartySize     struct {
+			Max             int   `json:"max"`
+			Min             int   `json:"min"`
+			Invalid         []int `json:"invalid"`
+			FullPartyBypass bool  `json:"full_party_bypass"`
+		} `json:"party_size"`
+		HighSkill struct {
+			MaxPartySize int `json:"max_party_size"`
+			MinTier      int `json:"min_tier"`
+			MaxTier      int `json:"max_tier"`
+		} `json:"high_skill"`
+		Ranked         bool `json:"ranked"`
+		Tournament     bool `json:"tournament"`
+		SkillDisparity []struct {
+			Tier    int    `json:"tier"`
+			Name    string `json:"name"`
+			MaxTier struct {
+				ID   int    `json:"id"`
+				Name string `json:"name"`
+			} `json:"max_tier"`
+		} `json:"skill_disparity"`
+		RequiredAccountLevel int `json:"required_account_level"`
+		GameRules            struct {
+			OvertimeWinByTwo       bool `json:"overtime_win_by_two"`
+			AllowLenientSurrender  bool `json:"allow_lenient_surrender"`
+			AllowDropOut           bool `json:"allow_drop_out"`
+			AssignRandomAgents     bool `json:"assign_random_agents"`
+			SkipPregame            bool `json:"skip_pregame"`
+			AllowOvertimeDrawVote  bool `json:"allow_overtime_draw_vote"`
+			OvertimeWinByTwoCapped bool `json:"overtime_win_by_two_capped"`
+			PremierMode            bool `json:"premier_mode"`
+		} `json:"game_rules"`
+		Platforms []string `json:"platforms"`
+		Maps      []struct {
+			Map struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"map"`
+			Enabled bool `json:"enabled"`
+		} `json:"maps"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetStatusResponse struct {
+	Status int    `json:"status"`
+	Region string `json:"region"`
+	Data   struct {
+		Maintenances []struct {
+			CreatedAt time.Time `json:"created_at"`
+			ArchiveAt time.Time `json:"archive_at"`
+			Updates   []struct {
+				CreatedAt    time.Time `json:"created_at"`
+				UpdatedAt    time.Time `json:"updated_at"`
+				Publish      bool      `json:"publish"`
+				ID           int       `json:"id"`
+				Translations []struct {
+					Content string `json:"content"`
+					Locale  string `json:"locale"`
+				} `json:"translations"`
+				PublishLocations []string `json:"publish_locations"`
+				Author           string   `json:"author"`
+			} `json:"updates"`
+			Platforms []string  `json:"platforms"`
+			UpdatedAt time.Time `json:"updated_at"`
+			ID        int       `json:"id"`
+			Titles    []struct {
+				Content string `json:"content"`
+				Locale  string `json:"locale"`
+			} `json:"titles"`
+			MaintenanceStatus string `json:"maintenance_status"`
+			IncidentSeverity  string `json:"incident_severity"`
+		} `json:"maintenances"`
+		Incidents []struct {
+			CreatedAt time.Time `json:"created_at"`
+			ArchiveAt time.Time `json:"archive_at"`
+			Updates   []struct {
+				CreatedAt    time.Time `json:"created_at"`
+				UpdatedAt    time.Time `json:"updated_at"`
+				Publish      bool      `json:"publish"`
+				ID           int       `json:"id"`
+				Translations []struct {
+					Content string `json:"content"`
+					Locale  string `json:"locale"`
+				} `json:"translations"`
+				PublishLocations []string `json:"publish_locations"`
+				Author           string   `json:"author"`
+			} `json:"updates"`
+			Platforms []string  `json:"platforms"`
+			UpdatedAt time.Time `json:"updated_at"`
+			ID        int       `json:"id"`
+			Titles    []struct {
+				Content string `json:"content"`
+				Locale  string `json:"locale"`
+			} `json:"titles"`
+			MaintenanceStatus string `json:"maintenance_status"`
+			IncidentSeverity  string `json:"incident_severity"`
+		} `json:"incidents"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetVersionResponse struct {
+	Status int `json:"status"`
+	Data   struct {
+		Version       string `json:"version"`
+		ClientVersion string `json:"clientVersion"`
+		Branch        string `json:"branch"`
+		Region        string `json:"region"`
+	} `json:"data"`
+	Errors []Error `json:"errors"`
+}
+
+type GetRawMatchHistoryParams struct {
+	Type    string `json:"type"`
+	Value   string `json:"value"`
+	Region  string `json:"region"`
+	Queries string `json:"queries"`
+}
+
+type GetRawMatchHistoryResponse struct {
+	Subject    string `json:"Subject"`
+	BeginIndex int    `json:"BeginIndex"`
+	EndIndex   int    `json:"EndIndex"`
+	Total      int    `json:"Total"`
+	History    []struct {
+		MatchID       string `json:"MatchID"`
+		GameStartTime int64  `json:"GameStartTime"`
+		QueueID       string `json:"QueueID"`
+	} `json:"History"`
+	Region string  `json:"region"`
+	Errors []Error `json:"errors"`
+}
+
+type GetRawMatchDetailsParams struct {
+	Type    string   `json:"type"`
+	Value   []string `json:"value"`
+	Region  string   `json:"region"`
+	Queries string   `json:"queries"`
+}
+
+type GetRawMatchDetailsResponse []struct {
+	MatchInfo struct {
+		MatchID             string `json:"matchId"`
+		MapID               string `json:"mapId"`
+		GamePodID           string `json:"gamePodId"`
+		GameLoopZone        string `json:"gameLoopZone"`
+		GameServerAddress   string `json:"gameServerAddress"`
+		GameVersion         string `json:"gameVersion"`
+		GameLengthMillis    int    `json:"gameLengthMillis"`
+		GameStartMillis     int64  `json:"gameStartMillis"`
+		ProvisioningFlowID  string `json:"provisioningFlowID"`
+		IsCompleted         bool   `json:"isCompleted"`
+		CustomGameName      string `json:"customGameName"`
+		ForcePostProcessing bool   `json:"forcePostProcessing"`
+		QueueID             string `json:"queueID"`
+		GameMode            string `json:"gameMode"`
+		IsRanked            bool   `json:"isRanked"`
+		IsMatchSampled      bool   `json:"isMatchSampled"`
+		SeasonID            string `json:"seasonId"`
+		CompletionState     string `json:"completionState"`
+		PlatformType        string `json:"platformType"`
+		PremierMatchInfo    struct {
+		} `json:"premierMatchInfo"`
+		PartyRRPenalties            map[string]int `json:"partyRRPenalties"`
+		ShouldMatchDisablePenalties bool           `json:"shouldMatchDisablePenalties"`
+	} `json:"matchInfo"`
+	Players []struct {
+		Subject      string `json:"subject"`
+		GameName     string `json:"gameName"`
+		TagLine      string `json:"tagLine"`
+		PlatformInfo struct {
+			PlatformType      string `json:"platformType"`
+			PlatformOS        string `json:"platformOS"`
+			PlatformOSVersion string `json:"platformOSVersion"`
+			PlatformChipset   string `json:"platformChipset"`
+		} `json:"platformInfo"`
+		TeamID      string `json:"teamId"`
+		PartyID     string `json:"partyId"`
+		CharacterID string `json:"characterId"`
+		Stats       struct {
+			Score          int `json:"score"`
+			RoundsPlayed   int `json:"roundsPlayed"`
+			Kills          int `json:"kills"`
+			Deaths         int `json:"deaths"`
+			Assists        int `json:"assists"`
+			PlaytimeMillis int `json:"playtimeMillis"`
+			AbilityCasts   struct {
+				GrenadeCasts  int `json:"grenadeCasts"`
+				Ability1Casts int `json:"ability1Casts"`
+				Ability2Casts int `json:"ability2Casts"`
+				UltimateCasts int `json:"ultimateCasts"`
+			} `json:"abilityCasts"`
+		} `json:"stats"`
+		RoundDamage []struct {
+			Round    int    `json:"round"`
+			Receiver string `json:"receiver"`
+			Damage   int    `json:"damage"`
+		} `json:"roundDamage"`
+		CompetitiveTier        int    `json:"competitiveTier"`
+		IsObserver             bool   `json:"isObserver"`
+		PlayerCard             string `json:"playerCard"`
+		PlayerTitle            string `json:"playerTitle"`
+		AccountLevel           int    `json:"accountLevel"`
+		SessionPlaytimeMinutes int    `json:"sessionPlaytimeMinutes"`
+		BehaviorFactors        struct {
+			AfkRounds                   int     `json:"afkRounds"`
+			Collisions                  float64 `json:"collisions"`
+			CommsRatingRecovery         int     `json:"commsRatingRecovery"`
+			DamageParticipationOutgoing int     `json:"damageParticipationOutgoing"`
+			FriendlyFireIncoming        int     `json:"friendlyFireIncoming"`
+			FriendlyFireOutgoing        int     `json:"friendlyFireOutgoing"`
+			MouseMovement               int     `json:"mouseMovement"`
+			SelfDamage                  int     `json:"selfDamage"`
+			StayedInSpawnRounds         int     `json:"stayedInSpawnRounds"`
+		} `json:"behaviorFactors"`
+		NewPlayerExperienceDetails struct {
+			BasicMovement struct {
+				IdleTimeMillis              int `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+			} `json:"basicMovement"`
+			BasicGunSkill struct {
+				IdleTimeMillis              int `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+			} `json:"basicGunSkill"`
+			AdaptiveBots struct {
+				IdleTimeMillis                               int         `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis                  int         `json:"objectiveCompleteTimeMillis"`
+				AdaptiveBotAverageDurationMillisAllAttempts  int         `json:"adaptiveBotAverageDurationMillisAllAttempts"`
+				AdaptiveBotAverageDurationMillisFirstAttempt int         `json:"adaptiveBotAverageDurationMillisFirstAttempt"`
+				KillDetailsFirstAttempt                      interface{} `json:"killDetailsFirstAttempt"`
+			} `json:"adaptiveBots"`
+			Ability struct {
+				IdleTimeMillis              int `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+			} `json:"ability"`
+			BombPlant struct {
+				IdleTimeMillis              int `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+			} `json:"bombPlant"`
+			DefendBombSite struct {
+				IdleTimeMillis              int  `json:"idleTimeMillis"`
+				ObjectiveCompleteTimeMillis int  `json:"objectiveCompleteTimeMillis"`
+				Success                     bool `json:"success"`
+			} `json:"defendBombSite"`
+			SettingStatus struct {
+				IsMouseSensitivityDefault bool `json:"isMouseSensitivityDefault"`
+				IsCrosshairDefault        bool `json:"isCrosshairDefault"`
+			} `json:"settingStatus"`
+			VersionString string `json:"versionString"`
+		} `json:"newPlayerExperienceDetails"`
+		PreferredLevelBorder string `json:"preferredLevelBorder,omitempty"`
+		XpModifications      []struct {
+			Value float64 `json:"Value"`
+			ID    string  `json:"ID"`
+		} `json:"xpModifications,omitempty"`
+	} `json:"players"`
+	Bots    []interface{} `json:"bots"`
+	Coaches []interface{} `json:"coaches"`
+	Teams   []struct {
+		TeamID       string `json:"teamId"`
+		Won          bool   `json:"won"`
+		RoundsPlayed int    `json:"roundsPlayed"`
+		RoundsWon    int    `json:"roundsWon"`
+		NumPoints    int    `json:"numPoints"`
+	} `json:"teams"`
+	RoundResults []struct {
+		RoundNum             int    `json:"roundNum"`
+		RoundResult          string `json:"roundResult"`
+		RoundCeremony        string `json:"roundCeremony"`
+		WinningTeam          string `json:"winningTeam"`
+		BombPlanter          string `json:"bombPlanter,omitempty"`
+		PlantRoundTime       int    `json:"plantRoundTime"`
+		PlantPlayerLocations []struct {
+			Subject     string  `json:"subject"`
+			ViewRadians float64 `json:"viewRadians"`
+			Location    struct {
+				X int `json:"x"`
+				Y int `json:"y"`
+			} `json:"location"`
+		} `json:"plantPlayerLocations"`
+		PlantLocation struct {
+			X int `json:"x"`
+			Y int `json:"y"`
+		} `json:"plantLocation"`
+		PlantSite             string      `json:"plantSite"`
+		DefuseRoundTime       int         `json:"defuseRoundTime"`
+		DefusePlayerLocations interface{} `json:"defusePlayerLocations"`
+		DefuseLocation        struct {
+			X int `json:"x"`
+			Y int `json:"y"`
+		} `json:"defuseLocation"`
+		PlayerStats []struct {
+			Subject string `json:"subject"`
+			Kills   []struct {
+				GameTime       int    `json:"gameTime"`
+				RoundTime      int    `json:"roundTime"`
+				Killer         string `json:"killer"`
+				Victim         string `json:"victim"`
+				VictimLocation struct {
+					X int `json:"x"`
+					Y int `json:"y"`
+				} `json:"victimLocation"`
+				Assistants      []interface{} `json:"assistants"`
+				PlayerLocations []struct {
+					Subject     string  `json:"subject"`
+					ViewRadians float64 `json:"viewRadians"`
+					Location    struct {
+						X int `json:"x"`
+						Y int `json:"y"`
+					} `json:"location"`
+				} `json:"playerLocations"`
+				FinishingDamage struct {
+					DamageType          string `json:"damageType"`
+					DamageItem          string `json:"damageItem"`
+					IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
+				} `json:"finishingDamage"`
+			} `json:"kills"`
+			Damage []struct {
+				Receiver  string `json:"receiver"`
+				Damage    int    `json:"damage"`
+				Legshots  int    `json:"legshots"`
+				Bodyshots int    `json:"bodyshots"`
+				Headshots int    `json:"headshots"`
+			} `json:"damage"`
+			Score   int `json:"score"`
+			Economy struct {
+				LoadoutValue int    `json:"loadoutValue"`
+				Weapon       string `json:"weapon"`
+				Armor        string `json:"armor"`
+				Remaining    int    `json:"remaining"`
+				Spent        int    `json:"spent"`
+			} `json:"economy"`
+			Ability struct {
+				GrenadeEffects  interface{} `json:"grenadeEffects"`
+				Ability1Effects interface{} `json:"ability1Effects"`
+				Ability2Effects interface{} `json:"ability2Effects"`
+				UltimateEffects interface{} `json:"ultimateEffects"`
+			} `json:"ability"`
+			WasAfk        bool `json:"wasAfk"`
+			WasPenalized  bool `json:"wasPenalized"`
+			StayedInSpawn bool `json:"stayedInSpawn"`
+		} `json:"playerStats"`
+		RoundResultCode string `json:"roundResultCode"`
+		PlayerEconomies []struct {
+			Subject      string `json:"subject"`
+			LoadoutValue int    `json:"loadoutValue"`
+			Weapon       string `json:"weapon"`
+			Armor        string `json:"armor"`
+			Remaining    int    `json:"remaining"`
+			Spent        int    `json:"spent"`
+		} `json:"playerEconomies"`
+		PlayerScores []struct {
+			Subject string `json:"subject"`
+			Score   int    `json:"score"`
+		} `json:"playerScores"`
+		BombDefuser string `json:"bombDefuser,omitempty"`
+	} `json:"roundResults"`
+	Kills []struct {
+		GameTime       int    `json:"gameTime"`
+		RoundTime      int    `json:"roundTime"`
+		Round          int    `json:"round"`
+		Killer         string `json:"killer"`
+		Victim         string `json:"victim"`
+		VictimLocation struct {
+			X int `json:"x"`
+			Y int `json:"y"`
+		} `json:"victimLocation"`
+		Assistants      []interface{} `json:"assistants"`
+		PlayerLocations []struct {
+			Subject     string  `json:"subject"`
+			ViewRadians float64 `json:"viewRadians"`
+			Location    struct {
+				X int `json:"x"`
+				Y int `json:"y"`
+			} `json:"location"`
+		} `json:"playerLocations"`
+		FinishingDamage struct {
+			DamageType          string `json:"damageType"`
+			DamageItem          string `json:"damageItem"`
+			IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
+		} `json:"finishingDamage"`
+	} `json:"kills"`
+	Region string  `json:"region"`
 	Errors []Error `json:"errors"`
 }
