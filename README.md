@@ -5,7 +5,7 @@
 
 
 
-# GO-VALORANT-API (WIP!)
+# GO-VALORANT-API (WIP!) [![Go Reference](https://pkg.go.dev/badge/github.com/yldshv/go-valorant-api.svg)](https://pkg.go.dev/github.com/yldshv/go-valorant-api)
 
 GO-VALORANT-API is a go-based wrapper for the following Valorant Rest API:
 
@@ -74,7 +74,8 @@ fmt.Printf("%+v", mmrHistory)
 
 ## Documentation
 
-The detailed documentations are still in progress.
+The detailed documentations are still in progress an will be available soon at: <br>
+https://pkg.go.dev/github.com/yldshv/go-valorant-api
 
 Methodnaming is heavily inspired by the endpoint naming here:<br>
 [API Swagger](https://app.swaggerhub.com/apis-docs/Henrik-3/HenrikDev-API/3.0.0)
