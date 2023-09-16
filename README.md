@@ -19,12 +19,6 @@ This is the first version. There could be some bugs, unexpected exceptions or si
 
 You can request an API key on [Henrik's discord server](https://discord.com/invite/X3GaVkX2YN) <br> It is NOT required to use an API key though!
 
-## Summary
-
-1. [Installation](#installation)
-2. [Example](#example)
-3. [Documentation](#documentation)
-
 ## Installation
 
 ```bash
@@ -74,8 +68,7 @@ fmt.Printf("%+v", mmrHistory)
 
 ## Documentation
 
-The detailed documentations are still in progress an will be available soon at: <br>
-https://pkg.go.dev/github.com/yldshv/go-valorant-api
+https://pkg.go.dev/github.com/yldshv/go-valorant-api#VAPI
 
-Methodnaming is heavily inspired by the endpoint naming here:<br>
-[API Swagger](https://app.swaggerhub.com/apis-docs/Henrik-3/HenrikDev-API/3.0.0)
+Methodnaming is heavily inspired by the endpoint naming:<br>
+[Swagger](https://app.swaggerhub.com/apis-docs/Henrik-3/HenrikDev-API/3.0.0)
