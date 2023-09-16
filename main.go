@@ -563,7 +563,7 @@ func (v *VAPI) GetRawMatchHistory(p GetRawMatchHistoryParams) (*GetRawMatchHisto
 	return matchHistory, nil
 }
 
-func (v *VAPI) GetRawMatchDetails(p GetRawMatchDetailsParams) (*[]GetRawMatchDetailsResponse, error) {
+func (v *VAPI) GetRawMatchDetails(p GetRawMatchDetailsParams) ([]GetRawMatchDetailsResponse, error) {
 	p.Type = "matchdetails"
 	body, _ := json.Marshal(p)
 	req, _ := http.NewRequest("POST", "https://api.henrikdev.xyz/valorant/v1/raw", bytes.NewReader(body))
@@ -576,7 +576,7 @@ func (v *VAPI) GetRawMatchDetails(p GetRawMatchDetailsParams) (*[]GetRawMatchDet
 	}
 	defer resp.Body.Close()
 
-	var matchDetails *[]GetRawMatchDetailsResponse
+	var matchDetails []GetRawMatchDetailsResponse
 
 	if err := json.NewDecoder(resp.Body).Decode(&matchDetails); err != nil {
 		return nil, err
