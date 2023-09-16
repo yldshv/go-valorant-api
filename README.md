@@ -42,7 +42,8 @@ import (
 )
 
 func main() {
-  vapi := govapi.New() //You can pass in your API-Key as String (if you dont have a key just leave it empty)
+  vapi := govapi.New() 
+  // vapi := govapi.New(govapi.WithKey("xxx")) <- If you have a key.
 
   acc, err := vapi.GetAccountByName(govapi.GetAccountByNameParams{
     Name: "xxx",
@@ -65,7 +66,7 @@ mmrHistory, err := vapi.GetLifetimeMMRHistoryByPUUID(govapi.GetLifetimeMMRHistor
   Size: "10",
 })
 if err != nil {
-  log.Fatal(err)
+  // handle the error
 }
 
 fmt.Printf("%+v", mmrHistory)
