@@ -2865,248 +2865,250 @@ type GetRawMatchDetailsParams struct {
 	Queries string   `json:"queries"`
 }
 
-type GetRawMatchDetailsResponse []struct {
-	MatchInfo struct {
-		MatchID             string `json:"matchId"`
-		MapID               string `json:"mapId"`
-		GamePodID           string `json:"gamePodId"`
-		GameLoopZone        string `json:"gameLoopZone"`
-		GameServerAddress   string `json:"gameServerAddress"`
-		GameVersion         string `json:"gameVersion"`
-		GameLengthMillis    int    `json:"gameLengthMillis"`
-		GameStartMillis     int64  `json:"gameStartMillis"`
-		ProvisioningFlowID  string `json:"provisioningFlowID"`
-		IsCompleted         bool   `json:"isCompleted"`
-		CustomGameName      string `json:"customGameName"`
-		ForcePostProcessing bool   `json:"forcePostProcessing"`
-		QueueID             string `json:"queueID"`
-		GameMode            string `json:"gameMode"`
-		IsRanked            bool   `json:"isRanked"`
-		IsMatchSampled      bool   `json:"isMatchSampled"`
-		SeasonID            string `json:"seasonId"`
-		CompletionState     string `json:"completionState"`
-		PlatformType        string `json:"platformType"`
-		PremierMatchInfo    struct {
-		} `json:"premierMatchInfo"`
-		PartyRRPenalties            map[string]int `json:"partyRRPenalties"`
-		ShouldMatchDisablePenalties bool           `json:"shouldMatchDisablePenalties"`
-	} `json:"matchInfo"`
-	Players []struct {
-		Subject      string `json:"subject"`
-		GameName     string `json:"gameName"`
-		TagLine      string `json:"tagLine"`
-		PlatformInfo struct {
-			PlatformType      string `json:"platformType"`
-			PlatformOS        string `json:"platformOS"`
-			PlatformOSVersion string `json:"platformOSVersion"`
-			PlatformChipset   string `json:"platformChipset"`
-		} `json:"platformInfo"`
-		TeamID      string `json:"teamId"`
-		PartyID     string `json:"partyId"`
-		CharacterID string `json:"characterId"`
-		Stats       struct {
-			Score          int `json:"score"`
-			RoundsPlayed   int `json:"roundsPlayed"`
-			Kills          int `json:"kills"`
-			Deaths         int `json:"deaths"`
-			Assists        int `json:"assists"`
-			PlaytimeMillis int `json:"playtimeMillis"`
-			AbilityCasts   struct {
-				GrenadeCasts  int `json:"grenadeCasts"`
-				Ability1Casts int `json:"ability1Casts"`
-				Ability2Casts int `json:"ability2Casts"`
-				UltimateCasts int `json:"ultimateCasts"`
-			} `json:"abilityCasts"`
-		} `json:"stats"`
-		RoundDamage []struct {
-			Round    int    `json:"round"`
-			Receiver string `json:"receiver"`
-			Damage   int    `json:"damage"`
-		} `json:"roundDamage"`
-		CompetitiveTier        int    `json:"competitiveTier"`
-		IsObserver             bool   `json:"isObserver"`
-		PlayerCard             string `json:"playerCard"`
-		PlayerTitle            string `json:"playerTitle"`
-		AccountLevel           int    `json:"accountLevel"`
-		SessionPlaytimeMinutes int    `json:"sessionPlaytimeMinutes"`
-		BehaviorFactors        struct {
-			AfkRounds                   int     `json:"afkRounds"`
-			Collisions                  float64 `json:"collisions"`
-			CommsRatingRecovery         int     `json:"commsRatingRecovery"`
-			DamageParticipationOutgoing int     `json:"damageParticipationOutgoing"`
-			FriendlyFireIncoming        int     `json:"friendlyFireIncoming"`
-			FriendlyFireOutgoing        int     `json:"friendlyFireOutgoing"`
-			MouseMovement               int     `json:"mouseMovement"`
-			SelfDamage                  int     `json:"selfDamage"`
-			StayedInSpawnRounds         int     `json:"stayedInSpawnRounds"`
-		} `json:"behaviorFactors"`
-		NewPlayerExperienceDetails struct {
-			BasicMovement struct {
-				IdleTimeMillis              int `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
-			} `json:"basicMovement"`
-			BasicGunSkill struct {
-				IdleTimeMillis              int `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
-			} `json:"basicGunSkill"`
-			AdaptiveBots struct {
-				IdleTimeMillis                               int         `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis                  int         `json:"objectiveCompleteTimeMillis"`
-				AdaptiveBotAverageDurationMillisAllAttempts  int         `json:"adaptiveBotAverageDurationMillisAllAttempts"`
-				AdaptiveBotAverageDurationMillisFirstAttempt int         `json:"adaptiveBotAverageDurationMillisFirstAttempt"`
-				KillDetailsFirstAttempt                      interface{} `json:"killDetailsFirstAttempt"`
-			} `json:"adaptiveBots"`
-			Ability struct {
-				IdleTimeMillis              int `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
-			} `json:"ability"`
-			BombPlant struct {
-				IdleTimeMillis              int `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
-			} `json:"bombPlant"`
-			DefendBombSite struct {
-				IdleTimeMillis              int  `json:"idleTimeMillis"`
-				ObjectiveCompleteTimeMillis int  `json:"objectiveCompleteTimeMillis"`
-				Success                     bool `json:"success"`
-			} `json:"defendBombSite"`
-			SettingStatus struct {
-				IsMouseSensitivityDefault bool `json:"isMouseSensitivityDefault"`
-				IsCrosshairDefault        bool `json:"isCrosshairDefault"`
-			} `json:"settingStatus"`
-			VersionString string `json:"versionString"`
-		} `json:"newPlayerExperienceDetails"`
-		PreferredLevelBorder string `json:"preferredLevelBorder,omitempty"`
-		XpModifications      []struct {
-			Value float64 `json:"Value"`
-			ID    string  `json:"ID"`
-		} `json:"xpModifications,omitempty"`
-	} `json:"players"`
-	Bots    []interface{} `json:"bots"`
-	Coaches []interface{} `json:"coaches"`
-	Teams   []struct {
-		TeamID       string `json:"teamId"`
-		Won          bool   `json:"won"`
-		RoundsPlayed int    `json:"roundsPlayed"`
-		RoundsWon    int    `json:"roundsWon"`
-		NumPoints    int    `json:"numPoints"`
-	} `json:"teams"`
-	RoundResults []struct {
-		RoundNum             int    `json:"roundNum"`
-		RoundResult          string `json:"roundResult"`
-		RoundCeremony        string `json:"roundCeremony"`
-		WinningTeam          string `json:"winningTeam"`
-		BombPlanter          string `json:"bombPlanter,omitempty"`
-		PlantRoundTime       int    `json:"plantRoundTime"`
-		PlantPlayerLocations []struct {
-			Subject     string  `json:"subject"`
-			ViewRadians float64 `json:"viewRadians"`
-			Location    struct {
-				X int `json:"x"`
-				Y int `json:"y"`
-			} `json:"location"`
-		} `json:"plantPlayerLocations"`
-		PlantLocation struct {
-			X int `json:"x"`
-			Y int `json:"y"`
-		} `json:"plantLocation"`
-		PlantSite             string      `json:"plantSite"`
-		DefuseRoundTime       int         `json:"defuseRoundTime"`
-		DefusePlayerLocations interface{} `json:"defusePlayerLocations"`
-		DefuseLocation        struct {
-			X int `json:"x"`
-			Y int `json:"y"`
-		} `json:"defuseLocation"`
-		PlayerStats []struct {
-			Subject string `json:"subject"`
-			Kills   []struct {
-				GameTime       int    `json:"gameTime"`
-				RoundTime      int    `json:"roundTime"`
-				Killer         string `json:"killer"`
-				Victim         string `json:"victim"`
-				VictimLocation struct {
+type GetRawMatchDetailsResponse struct {
+	Matches struct {
+		MatchInfo struct {
+			MatchID             string `json:"matchId"`
+			MapID               string `json:"mapId"`
+			GamePodID           string `json:"gamePodId"`
+			GameLoopZone        string `json:"gameLoopZone"`
+			GameServerAddress   string `json:"gameServerAddress"`
+			GameVersion         string `json:"gameVersion"`
+			GameLengthMillis    int    `json:"gameLengthMillis"`
+			GameStartMillis     int64  `json:"gameStartMillis"`
+			ProvisioningFlowID  string `json:"provisioningFlowID"`
+			IsCompleted         bool   `json:"isCompleted"`
+			CustomGameName      string `json:"customGameName"`
+			ForcePostProcessing bool   `json:"forcePostProcessing"`
+			QueueID             string `json:"queueID"`
+			GameMode            string `json:"gameMode"`
+			IsRanked            bool   `json:"isRanked"`
+			IsMatchSampled      bool   `json:"isMatchSampled"`
+			SeasonID            string `json:"seasonId"`
+			CompletionState     string `json:"completionState"`
+			PlatformType        string `json:"platformType"`
+			PremierMatchInfo    struct {
+			} `json:"premierMatchInfo"`
+			PartyRRPenalties            map[string]int `json:"partyRRPenalties"`
+			ShouldMatchDisablePenalties bool           `json:"shouldMatchDisablePenalties"`
+		} `json:"matchInfo"`
+		Players []struct {
+			Subject      string `json:"subject"`
+			GameName     string `json:"gameName"`
+			TagLine      string `json:"tagLine"`
+			PlatformInfo struct {
+				PlatformType      string `json:"platformType"`
+				PlatformOS        string `json:"platformOS"`
+				PlatformOSVersion string `json:"platformOSVersion"`
+				PlatformChipset   string `json:"platformChipset"`
+			} `json:"platformInfo"`
+			TeamID      string `json:"teamId"`
+			PartyID     string `json:"partyId"`
+			CharacterID string `json:"characterId"`
+			Stats       struct {
+				Score          int `json:"score"`
+				RoundsPlayed   int `json:"roundsPlayed"`
+				Kills          int `json:"kills"`
+				Deaths         int `json:"deaths"`
+				Assists        int `json:"assists"`
+				PlaytimeMillis int `json:"playtimeMillis"`
+				AbilityCasts   struct {
+					GrenadeCasts  int `json:"grenadeCasts"`
+					Ability1Casts int `json:"ability1Casts"`
+					Ability2Casts int `json:"ability2Casts"`
+					UltimateCasts int `json:"ultimateCasts"`
+				} `json:"abilityCasts"`
+			} `json:"stats"`
+			RoundDamage []struct {
+				Round    int    `json:"round"`
+				Receiver string `json:"receiver"`
+				Damage   int    `json:"damage"`
+			} `json:"roundDamage"`
+			CompetitiveTier        int    `json:"competitiveTier"`
+			IsObserver             bool   `json:"isObserver"`
+			PlayerCard             string `json:"playerCard"`
+			PlayerTitle            string `json:"playerTitle"`
+			AccountLevel           int    `json:"accountLevel"`
+			SessionPlaytimeMinutes int    `json:"sessionPlaytimeMinutes"`
+			BehaviorFactors        struct {
+				AfkRounds                   int     `json:"afkRounds"`
+				Collisions                  float64 `json:"collisions"`
+				CommsRatingRecovery         int     `json:"commsRatingRecovery"`
+				DamageParticipationOutgoing int     `json:"damageParticipationOutgoing"`
+				FriendlyFireIncoming        int     `json:"friendlyFireIncoming"`
+				FriendlyFireOutgoing        int     `json:"friendlyFireOutgoing"`
+				MouseMovement               int     `json:"mouseMovement"`
+				SelfDamage                  int     `json:"selfDamage"`
+				StayedInSpawnRounds         int     `json:"stayedInSpawnRounds"`
+			} `json:"behaviorFactors"`
+			NewPlayerExperienceDetails struct {
+				BasicMovement struct {
+					IdleTimeMillis              int `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+				} `json:"basicMovement"`
+				BasicGunSkill struct {
+					IdleTimeMillis              int `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+				} `json:"basicGunSkill"`
+				AdaptiveBots struct {
+					IdleTimeMillis                               int         `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis                  int         `json:"objectiveCompleteTimeMillis"`
+					AdaptiveBotAverageDurationMillisAllAttempts  int         `json:"adaptiveBotAverageDurationMillisAllAttempts"`
+					AdaptiveBotAverageDurationMillisFirstAttempt int         `json:"adaptiveBotAverageDurationMillisFirstAttempt"`
+					KillDetailsFirstAttempt                      interface{} `json:"killDetailsFirstAttempt"`
+				} `json:"adaptiveBots"`
+				Ability struct {
+					IdleTimeMillis              int `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+				} `json:"ability"`
+				BombPlant struct {
+					IdleTimeMillis              int `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis int `json:"objectiveCompleteTimeMillis"`
+				} `json:"bombPlant"`
+				DefendBombSite struct {
+					IdleTimeMillis              int  `json:"idleTimeMillis"`
+					ObjectiveCompleteTimeMillis int  `json:"objectiveCompleteTimeMillis"`
+					Success                     bool `json:"success"`
+				} `json:"defendBombSite"`
+				SettingStatus struct {
+					IsMouseSensitivityDefault bool `json:"isMouseSensitivityDefault"`
+					IsCrosshairDefault        bool `json:"isCrosshairDefault"`
+				} `json:"settingStatus"`
+				VersionString string `json:"versionString"`
+			} `json:"newPlayerExperienceDetails"`
+			PreferredLevelBorder string `json:"preferredLevelBorder,omitempty"`
+			XpModifications      []struct {
+				Value float64 `json:"Value"`
+				ID    string  `json:"ID"`
+			} `json:"xpModifications,omitempty"`
+		} `json:"players"`
+		Bots    []interface{} `json:"bots"`
+		Coaches []interface{} `json:"coaches"`
+		Teams   []struct {
+			TeamID       string `json:"teamId"`
+			Won          bool   `json:"won"`
+			RoundsPlayed int    `json:"roundsPlayed"`
+			RoundsWon    int    `json:"roundsWon"`
+			NumPoints    int    `json:"numPoints"`
+		} `json:"teams"`
+		RoundResults []struct {
+			RoundNum             int    `json:"roundNum"`
+			RoundResult          string `json:"roundResult"`
+			RoundCeremony        string `json:"roundCeremony"`
+			WinningTeam          string `json:"winningTeam"`
+			BombPlanter          string `json:"bombPlanter,omitempty"`
+			PlantRoundTime       int    `json:"plantRoundTime"`
+			PlantPlayerLocations []struct {
+				Subject     string  `json:"subject"`
+				ViewRadians float64 `json:"viewRadians"`
+				Location    struct {
 					X int `json:"x"`
 					Y int `json:"y"`
-				} `json:"victimLocation"`
-				Assistants      []interface{} `json:"assistants"`
-				PlayerLocations []struct {
-					Subject     string  `json:"subject"`
-					ViewRadians float64 `json:"viewRadians"`
-					Location    struct {
+				} `json:"location"`
+			} `json:"plantPlayerLocations"`
+			PlantLocation struct {
+				X int `json:"x"`
+				Y int `json:"y"`
+			} `json:"plantLocation"`
+			PlantSite             string      `json:"plantSite"`
+			DefuseRoundTime       int         `json:"defuseRoundTime"`
+			DefusePlayerLocations interface{} `json:"defusePlayerLocations"`
+			DefuseLocation        struct {
+				X int `json:"x"`
+				Y int `json:"y"`
+			} `json:"defuseLocation"`
+			PlayerStats []struct {
+				Subject string `json:"subject"`
+				Kills   []struct {
+					GameTime       int    `json:"gameTime"`
+					RoundTime      int    `json:"roundTime"`
+					Killer         string `json:"killer"`
+					Victim         string `json:"victim"`
+					VictimLocation struct {
 						X int `json:"x"`
 						Y int `json:"y"`
-					} `json:"location"`
-				} `json:"playerLocations"`
-				FinishingDamage struct {
-					DamageType          string `json:"damageType"`
-					DamageItem          string `json:"damageItem"`
-					IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
-				} `json:"finishingDamage"`
-			} `json:"kills"`
-			Damage []struct {
-				Receiver  string `json:"receiver"`
-				Damage    int    `json:"damage"`
-				Legshots  int    `json:"legshots"`
-				Bodyshots int    `json:"bodyshots"`
-				Headshots int    `json:"headshots"`
-			} `json:"damage"`
-			Score   int `json:"score"`
-			Economy struct {
+					} `json:"victimLocation"`
+					Assistants      []interface{} `json:"assistants"`
+					PlayerLocations []struct {
+						Subject     string  `json:"subject"`
+						ViewRadians float64 `json:"viewRadians"`
+						Location    struct {
+							X int `json:"x"`
+							Y int `json:"y"`
+						} `json:"location"`
+					} `json:"playerLocations"`
+					FinishingDamage struct {
+						DamageType          string `json:"damageType"`
+						DamageItem          string `json:"damageItem"`
+						IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
+					} `json:"finishingDamage"`
+				} `json:"kills"`
+				Damage []struct {
+					Receiver  string `json:"receiver"`
+					Damage    int    `json:"damage"`
+					Legshots  int    `json:"legshots"`
+					Bodyshots int    `json:"bodyshots"`
+					Headshots int    `json:"headshots"`
+				} `json:"damage"`
+				Score   int `json:"score"`
+				Economy struct {
+					LoadoutValue int    `json:"loadoutValue"`
+					Weapon       string `json:"weapon"`
+					Armor        string `json:"armor"`
+					Remaining    int    `json:"remaining"`
+					Spent        int    `json:"spent"`
+				} `json:"economy"`
+				Ability struct {
+					GrenadeEffects  interface{} `json:"grenadeEffects"`
+					Ability1Effects interface{} `json:"ability1Effects"`
+					Ability2Effects interface{} `json:"ability2Effects"`
+					UltimateEffects interface{} `json:"ultimateEffects"`
+				} `json:"ability"`
+				WasAfk        bool `json:"wasAfk"`
+				WasPenalized  bool `json:"wasPenalized"`
+				StayedInSpawn bool `json:"stayedInSpawn"`
+			} `json:"playerStats"`
+			RoundResultCode string `json:"roundResultCode"`
+			PlayerEconomies []struct {
+				Subject      string `json:"subject"`
 				LoadoutValue int    `json:"loadoutValue"`
 				Weapon       string `json:"weapon"`
 				Armor        string `json:"armor"`
 				Remaining    int    `json:"remaining"`
 				Spent        int    `json:"spent"`
-			} `json:"economy"`
-			Ability struct {
-				GrenadeEffects  interface{} `json:"grenadeEffects"`
-				Ability1Effects interface{} `json:"ability1Effects"`
-				Ability2Effects interface{} `json:"ability2Effects"`
-				UltimateEffects interface{} `json:"ultimateEffects"`
-			} `json:"ability"`
-			WasAfk        bool `json:"wasAfk"`
-			WasPenalized  bool `json:"wasPenalized"`
-			StayedInSpawn bool `json:"stayedInSpawn"`
-		} `json:"playerStats"`
-		RoundResultCode string `json:"roundResultCode"`
-		PlayerEconomies []struct {
-			Subject      string `json:"subject"`
-			LoadoutValue int    `json:"loadoutValue"`
-			Weapon       string `json:"weapon"`
-			Armor        string `json:"armor"`
-			Remaining    int    `json:"remaining"`
-			Spent        int    `json:"spent"`
-		} `json:"playerEconomies"`
-		PlayerScores []struct {
-			Subject string `json:"subject"`
-			Score   int    `json:"score"`
-		} `json:"playerScores"`
-		BombDefuser string `json:"bombDefuser,omitempty"`
-	} `json:"roundResults"`
-	Kills []struct {
-		GameTime       int    `json:"gameTime"`
-		RoundTime      int    `json:"roundTime"`
-		Round          int    `json:"round"`
-		Killer         string `json:"killer"`
-		Victim         string `json:"victim"`
-		VictimLocation struct {
-			X int `json:"x"`
-			Y int `json:"y"`
-		} `json:"victimLocation"`
-		Assistants      []interface{} `json:"assistants"`
-		PlayerLocations []struct {
-			Subject     string  `json:"subject"`
-			ViewRadians float64 `json:"viewRadians"`
-			Location    struct {
+			} `json:"playerEconomies"`
+			PlayerScores []struct {
+				Subject string `json:"subject"`
+				Score   int    `json:"score"`
+			} `json:"playerScores"`
+			BombDefuser string `json:"bombDefuser,omitempty"`
+		} `json:"roundResults"`
+		Kills []struct {
+			GameTime       int    `json:"gameTime"`
+			RoundTime      int    `json:"roundTime"`
+			Round          int    `json:"round"`
+			Killer         string `json:"killer"`
+			Victim         string `json:"victim"`
+			VictimLocation struct {
 				X int `json:"x"`
 				Y int `json:"y"`
-			} `json:"location"`
-		} `json:"playerLocations"`
-		FinishingDamage struct {
-			DamageType          string `json:"damageType"`
-			DamageItem          string `json:"damageItem"`
-			IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
-		} `json:"finishingDamage"`
-	} `json:"kills"`
-	Region string  `json:"region"`
+			} `json:"victimLocation"`
+			Assistants      []interface{} `json:"assistants"`
+			PlayerLocations []struct {
+				Subject     string  `json:"subject"`
+				ViewRadians float64 `json:"viewRadians"`
+				Location    struct {
+					X int `json:"x"`
+					Y int `json:"y"`
+				} `json:"location"`
+			} `json:"playerLocations"`
+			FinishingDamage struct {
+				DamageType          string `json:"damageType"`
+				DamageItem          string `json:"damageItem"`
+				IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
+			} `json:"finishingDamage"`
+		} `json:"kills"`
+		Region string  `json:"region"`
+	}
 	Errors []Error `json:"errors"`
 }
