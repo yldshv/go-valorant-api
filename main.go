@@ -274,3 +274,75 @@ func (v *VAPI) GetLifetimeMMRHistoryByName(p GetLifetimeMMRHistoryByNameParams) 
 
 	return history, nil
 }
+
+func (v *VAPI) GetMatchesByNameV3(p GetMatchesByNameV3Params) (*GetMatchesByNameV3Response, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v3/matches/%v/%v/%v", p.Affinity, p.Name, p.Tag)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var matches *GetMatchesByNameV3Response
+
+	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, err
+	}
+
+	return matches, nil
+}
+
+func (v *VAPI) GetMatch(p GetMatchParams) (*GetMatchResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v2/match/%v", p.MatchId)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var match *GetMatchResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&match); err != nil {
+		return nil, err
+	}
+
+	return match, nil
+}
+
+func (v *VAPI) GetMMRHistoryByName(p GetMMRHistoryByNameParams) (*GetMMRHistoryByNameResponse, error) {
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v1/mmr-history/%v/%v/%v", p.Affinity, p.Name, p.Tag)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var mmrHistory *GetMMRHistoryByNameResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&mmrHistory); err != nil {
+		return nil, err
+	}
+
+	return mmrHistory, nil
+}
+
+func (v *VAPI) GetMMRByNameV2(p GetMMRByNameV2Params) (*GetMMRByNameV2Response, error) {
+	query := MakeQueryStr(QueryParams{
+		"season": p.Season,
+	})
+	url := fmt.Sprintf("https://api.henrikdev.xyz/valorant/v2/mmr/%v/%v/%v%v", p.Affinity, p.Name, p.Tag, query)
+	resp, err := MakeReq(v, url, "GET")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var mmr *GetMMRByNameV2Response
+
+	if err := json.NewDecoder(resp.Body).Decode(&mmr); err != nil {
+		return nil, err
+	}
+
+	return mmr, nil
+}
+
