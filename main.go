@@ -8,7 +8,12 @@ import (
 )
 
 type VAPI struct {
-	Token string
+	Token      string
+	Ratelimits struct {
+		Used      int `json:"used"`
+		Remaining int `json:"remaining"`
+		Reset     int `json:"reset"`
+	} `json:"ratelimits"`
 }
 
 func WithKey(t string) func(*VAPI) {
@@ -35,6 +40,7 @@ func (v *VAPI) GetAccountByName(p GetAccountByNameParams) (*GetAccountResponse, 
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var acc *GetAccountResponse
 
@@ -55,6 +61,7 @@ func (v *VAPI) GetAccountByPUUID(p GetAccountByPUUIDParams) (*GetAccountResponse
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var acc *GetAccountResponse
 
@@ -78,6 +85,7 @@ func (v *VAPI) GetLifetimeMatchesByPUUID(p GetLifetimeMatchesByPUUIDParams) (*Ge
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matches *GetLifetimeMatchesByPUUIDResponse
 
@@ -99,6 +107,7 @@ func (v *VAPI) GetLifetimeMMRHistoryByPUUID(p GetLifetimeMMRHistoryByPUUIDParams
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var history *GetLifetimeMMRHistoryByPUUIDResponse
 
@@ -121,6 +130,7 @@ func (v *VAPI) GetMatchesByPUUIDv3(p GetMatchesByPUUIDv3Params) (*GetMatchesByPU
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matches *GetMatchesByPUUIDv3Response
 
@@ -141,6 +151,7 @@ func (v *VAPI) GetMMRByPUUIDv2(p GetMMRByPUUIDv2Params) (*GetMMRByPUUIDv2Respons
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var mmr *GetMMRByPUUIDv2Response
 
@@ -158,6 +169,7 @@ func (v *VAPI) GetMMRHistoryByPUUID(p GetMMRHistoryByPUUIDParams) (*GetMMRHistor
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var mmrHistory *GetMMRHistoryByPUUIDResponse
 
@@ -178,6 +190,7 @@ func (v *VAPI) GetContent(p GetContentParams) (*GetContentResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var content *GetContentResponse
 
@@ -199,6 +212,7 @@ func (v *VAPI) GetEsportsSchedule(p GetEsportsScheduleParams) (*GetEsportsSchedu
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var schedule *GetEsportsScheduleResponse
 
@@ -223,6 +237,7 @@ func (v *VAPI) GetLeaderboardV2(p GetLeaderboardV2Params) (*GetLeaderboardV2Resp
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var lb *GetLeaderboardV2Response
 
@@ -246,6 +261,7 @@ func (v *VAPI) GetLifetimeMatchesByName(p GetLifetimeMatchesByNameParams) (*GetL
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matches *GetLifetimeMatchesByNameResponse
 
@@ -267,6 +283,7 @@ func (v *VAPI) GetLifetimeMMRHistoryByName(p GetLifetimeMMRHistoryByNameParams) 
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var history *GetLifetimeMMRHistoryByNameResponse
 
@@ -284,6 +301,7 @@ func (v *VAPI) GetMatchesByNameV3(p GetMatchesByNameV3Params) (*GetMatchesByName
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matches *GetMatchesByNameV3Response
 
@@ -301,6 +319,7 @@ func (v *VAPI) GetMatch(p GetMatchParams) (*GetMatchResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var match *GetMatchResponse
 
@@ -318,6 +337,7 @@ func (v *VAPI) GetMMRHistoryByName(p GetMMRHistoryByNameParams) (*GetMMRHistoryB
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var mmrHistory *GetMMRHistoryByNameResponse
 
@@ -338,6 +358,7 @@ func (v *VAPI) GetMMRByNameV2(p GetMMRByNameV2Params) (*GetMMRByNameV2Response, 
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var mmr *GetMMRByNameV2Response
 
@@ -355,6 +376,7 @@ func (v *VAPI) GetPremierTeam(p GetPremierTeamParams) (*GetPremierTeamResponse, 
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var team *GetPremierTeamResponse
 
@@ -372,6 +394,7 @@ func (v *VAPI) GetPremierTeamHistory(p GetPremierTeamParams) (*GetPremierTeamHis
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var teamHistory *GetPremierTeamHistoryResponse
 
@@ -395,6 +418,7 @@ func (v *VAPI) GetPremierTeams(p GetPremierTeamsParams) (*GetPremierTeamsRespons
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var teams *GetPremierTeamsResponse
 
@@ -412,6 +436,7 @@ func (v *VAPI) GetPremierConferences() (*GetPremierConferencesResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var conferences *GetPremierConferencesResponse
 
@@ -429,6 +454,7 @@ func (v *VAPI) GetPremierSeasons(p GetPremierSeasonsParams) (*GetPremierSeasonsR
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var seasons *GetPremierSeasonsResponse
 
@@ -446,6 +472,7 @@ func (v *VAPI) GetPremierLeaderboard(p GetPremierLeaderboardParams) (*GetPremier
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var lb *GetPremierLeaderboardResponse
 
@@ -463,6 +490,7 @@ func (v *VAPI) GetPremierConfLeaderboard(p GetPremierConfLeaderboardParams) (*Ge
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var lb *GetPremierLeaderboardResponse
 
@@ -480,6 +508,7 @@ func (v *VAPI) GetPremierConfDivLeaderboard(p GetPremierConfDivLeaderboardParams
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var lb *GetPremierLeaderboardResponse
 
@@ -497,6 +526,7 @@ func (v *VAPI) GetQueueStatus(p GetStatusParams) (*GetQueueStatusResponse, error
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var status *GetQueueStatusResponse
 
@@ -514,6 +544,7 @@ func (v *VAPI) GetStatus(p GetStatusParams) (*GetStatusResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var status *GetStatusResponse
 
@@ -531,6 +562,7 @@ func (v *VAPI) GetVersion(p GetStatusParams) (*GetVersionResponse, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var version *GetVersionResponse
 
@@ -553,6 +585,7 @@ func (v *VAPI) GetRawMatchHistory(p GetRawMatchHistoryParams) (*GetRawMatchHisto
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matchHistory *GetRawMatchHistoryResponse
 
@@ -575,6 +608,7 @@ func (v *VAPI) GetRawMatchDetails(p GetRawMatchDetailsParams) ([]GetRawMatchDeta
 		return nil, err
 	}
 	defer resp.Body.Close()
+	UpdateRatelimits(v, resp)
 
 	var matchDetails []GetRawMatchDetailsResponse
 

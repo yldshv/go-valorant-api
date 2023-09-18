@@ -3107,8 +3107,8 @@ type GetRawMatchDetailsResponse struct {
 			IsSecondaryFireMode bool   `json:"isSecondaryFireMode"`
 		} `json:"finishingDamage"`
 	} `json:"kills"`
-	Region string  `json:"region"`
-	Error bool `json:"error"`
-	Code int `json:"code"`
-	Id string `json:"id"`
+	Region string `json:"region"`
+	Error  bool   `json:"error"`
+	Code   int    `json:"code"`
+	Id     string `json:"id"`
 }

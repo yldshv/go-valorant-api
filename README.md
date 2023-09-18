@@ -49,6 +49,9 @@ func main() {
 
   // Do whatever you want with acc
   fmt.Printf("%+v", acc.Data.Puuid)
+
+  // Ratelimits
+  fmt.Printf("%+v", vapi.Ratelimits)
 }
 ```
 

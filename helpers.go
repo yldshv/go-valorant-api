@@ -2,6 +2,7 @@ package govapi
 
 import (
 	"net/http"
+	"strconv"
 )
 
 func MakeReq(v *VAPI, url string, method string) (*http.Response, error) {
@@ -29,4 +30,15 @@ func MakeQueryStr(qp QueryParams) string {
 	}
 
 	return query
+}
+
+func UpdateRatelimits(v *VAPI, h *http.Response) {
+	v.Ratelimits.Used = convToInt(h.Header.Get("x-ratelimit-limit"))
+	v.Ratelimits.Remaining = convToInt(h.Header.Get("x-ratelimit-remaining"))
+	v.Ratelimits.Reset = convToInt(h.Header.Get("x-ratelimit-reset"))
+}
+
+func convToInt(str string) int {
+	n, _ := strconv.Atoi(str)
+	return n
 }
