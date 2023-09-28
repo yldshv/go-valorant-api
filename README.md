@@ -5,7 +5,7 @@
 
 
 
-# GO-VALORANT-API (WIP!) [![Go Reference](https://pkg.go.dev/badge/github.com/yldshv/go-valorant-api.svg)](https://pkg.go.dev/github.com/yldshv/go-valorant-api)
+# GO-VALORANT-API [![Go Reference](https://pkg.go.dev/badge/github.com/yldshv/go-valorant-api.svg)](https://pkg.go.dev/github.com/yldshv/go-valorant-api)
 
 GO-VALORANT-API is a go-based wrapper for the following Valorant Rest API:
 
